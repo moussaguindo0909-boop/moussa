@@ -122,7 +122,7 @@ async function main() {
       data: {
         email: "volunteer.hatem@foodrescue.tn",
         password,
-        name: "Hatem Trabelsi",
+        name: "Moussa Guindo",
         phone: "+21699001122",
         role: "VOLUNTEER",
       },

@@ -120,7 +120,7 @@ async function main() {
   await Promise.all([
     prisma.user.create({
       data: {
-        email: "volunteer.hatem@foodrescue.tn",
+        email: "volunteer.mouss@foodrescue.tn",
         password,
         name: "Moussa Guindo",
         phone: "+21699001122",

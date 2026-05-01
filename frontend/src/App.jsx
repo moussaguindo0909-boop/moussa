@@ -401,12 +401,13 @@ function LandingPage() {
           </div>
         </div>
 
-        <div className="landing-hero-media">
-         <img 
-  alt="Aperçu Food Rescue" 
-  className="landing-hero-image" 
-  src="public/logo.png" 
-/>
+    <div className="landing-hero-media">
+  <img 
+    alt="Aperçu Food Rescue" 
+    className="landing-hero-image" 
+    src="/logo.png" 
+  />
+
           <div className="landing-floating-card landing-floating-card-top">
             <span className="page-eyebrow">Carte active</span>
             <strong>Collecte, réservation et impact visibles sans bruit inutile</strong>

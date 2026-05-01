@@ -4,7 +4,6 @@ import { motion } from 'framer-motion'
 import { io } from 'socket.io-client'
 import { MapContainer, Marker, Popup, TileLayer, useMap } from 'react-leaflet'
 import L from 'leaflet'
-import heroImage from './assets/hero.png'
 
 const API_BASE_URL = (import.meta.env.VITE_API_URL || 'http://localhost:5000/api').replace(/\/$/, '')
 const SOCKET_URL = (import.meta.env.VITE_SOCKET_URL || 'http://localhost:5000').replace(/\/$/, '')
@@ -254,6 +253,7 @@ function PageHeader({ eyebrow, title, description, actions }) {
 
 function TopNav() {
   const location = useLocation()
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const user = getStoredUser()
   const dashboardLink = user ? roleToDashboard(user.role) : '/login'
   const roleLabel = user ? getRoleLabel(user.role) : ''
@@ -265,9 +265,11 @@ function TopNav() {
     { label: 'Impact', to: '/impact' },
   ]
 
+  const isActiveLink = (to) => location.pathname === to || (to !== '/' && location.pathname.startsWith(to))
+
   return (
-    <header className="app-nav">
-      <Link className="brand-lockup" to="/">
+    <header className={classNames('app-nav', mobileMenuOpen && 'app-nav-open')}>
+      <Link className="brand-lockup" onClick={() => setMobileMenuOpen(false)} to="/">
         <img src="/logo.png" alt="Food Rescue logo" className="brand-logo" />
         <span>
           <strong>Food Rescue</strong>
@@ -280,9 +282,7 @@ function TopNav() {
           <Link
             className={classNames(
               'nav-link',
-              location.pathname === link.to || (link.to !== '/' && location.pathname.startsWith(link.to))
-                ? 'nav-link-active'
-                : '',
+              isActiveLink(link.to) ? 'nav-link-active' : '',
             )}
             key={link.to}
             to={link.to}
@@ -294,10 +294,41 @@ function TopNav() {
 
       <div className="nav-side">
         {user ? <span className="session-chip">{user.name} - {roleLabel}</span> : null}
-        <Link className="button button-primary button-small" to={user ? dashboardLink : '/login'}>
+        <Link className="button button-primary button-small" onClick={() => setMobileMenuOpen(false)} to={user ? dashboardLink : '/login'}>
           {user ? 'Mon espace' : 'Connexion'}
         </Link>
       </div>
+
+      <button
+        aria-controls="mobile-navigation"
+        aria-expanded={mobileMenuOpen}
+        aria-label={mobileMenuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
+        className="mobile-menu-button"
+        onClick={() => setMobileMenuOpen((current) => !current)}
+        type="button"
+      >
+        <span />
+        <span />
+        <span />
+      </button>
+
+      <nav
+        className={classNames('mobile-nav-panel', mobileMenuOpen && 'mobile-nav-panel-open')}
+        id="mobile-navigation"
+        aria-label="Navigation mobile"
+      >
+        {user ? <p className="mobile-session-chip">{user.name} - {roleLabel}</p> : null}
+        {links.map((link) => (
+          <Link
+            className={classNames('mobile-nav-link', isActiveLink(link.to) && 'mobile-nav-link-active')}
+            key={link.to}
+            onClick={() => setMobileMenuOpen(false)}
+            to={link.to}
+          >
+            {link.label}
+          </Link>
+        ))}
+      </nav>
     </header>
   )
 }

@@ -32,14 +32,25 @@ html {
   scroll-behavior: smooth;
 }
 
+html,
+body,
+#root {
+  min-width: 0;
+}
+
 body {
   margin: 0;
   color: var(--text-main);
   font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
   background:
     radial-gradient(circle at top left, rgba(181, 235, 103, 0.18), transparent 24%),
     radial-gradient(circle at top right, rgba(69, 167, 102, 0.14), transparent 28%),
     var(--cream);
+}
+
+#root {
+  min-height: 100svh;
 }
 
 a {
@@ -61,7 +72,7 @@ img {
 
 .app-page,
 .map-page-shell {
-  min-height: 100vh;
+  min-height: 100svh;
   padding-top: var(--nav-height);
 }
 
@@ -75,6 +86,7 @@ img {
   position: fixed;
   inset: 0 0 auto;
   z-index: 40;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -89,7 +101,12 @@ img {
 .brand-lockup {
   display: flex;
   align-items: center;
+  min-width: 0;
   gap: 12px;
+}
+
+.brand-lockup span {
+  min-width: 0;
 }
 
 .brand-lockup strong {
@@ -136,6 +153,10 @@ img {
   flex-wrap: wrap;
 }
 
+.nav-links {
+  justify-content: center;
+}
+
 .nav-link {
   padding: 10px 14px;
   border-radius: 999px;
@@ -152,6 +173,7 @@ img {
 
 .nav-side {
   align-items: center;
+  flex-shrink: 0;
 }
 
 .session-chip {
@@ -172,8 +194,49 @@ img {
   border: 0;
   border-radius: 12px;
   cursor: pointer;
+  line-height: 1.15;
+  text-align: center;
   transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, color 0.15s ease;
   font-weight: 700;
+}
+
+.mobile-menu-button,
+.mobile-nav-panel {
+  display: none;
+}
+
+.mobile-menu-button {
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid rgba(20, 61, 37, 0.12);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.92);
+  cursor: pointer;
+}
+
+.mobile-menu-button span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--green-900);
+  transition: transform 0.18s ease, opacity 0.18s ease;
+}
+
+.app-nav-open .mobile-menu-button span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.app-nav-open .mobile-menu-button span:nth-child(2) {
+  opacity: 0;
+}
+
+.app-nav-open .mobile-menu-button span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
 }
 
 .button:hover {
@@ -278,7 +341,8 @@ img {
 }
 
 .landing-stat-card {
-  min-width: 170px;
+  min-width: 0;
+  flex: 1 1 170px;
   padding: 16px 18px;
   border-radius: 18px;
   background: rgba(255, 255, 255, 0.92);
@@ -373,6 +437,7 @@ img {
   margin-top: 16px;
   font-size: clamp(2.6rem, 5vw, 4.8rem);
   color: var(--green-950);
+  overflow-wrap: anywhere;
 }
 
 .hero-text,
@@ -667,6 +732,7 @@ img {
 .map-title {
   font-size: clamp(2rem, 4vw, 3.3rem);
   color: var(--green-950);
+  overflow-wrap: anywhere;
 }
 
 .band-heading.compact h2 {
@@ -775,6 +841,7 @@ img {
 .mission-spotlight h3 {
   margin: 0;
   font-size: 1.35rem;
+  overflow-wrap: anywhere;
 }
 
 .landing-role-band,
@@ -1061,11 +1128,21 @@ img {
 .map-focus-title {
   margin: 0;
   font-size: 1.15rem;
+  overflow-wrap: anywhere;
 }
 
 .listing-card-top {
   align-items: center;
   justify-content: space-between;
+  min-width: 0;
+}
+
+.listing-card-top > div,
+.offer-header > div,
+.mission-grid > div,
+.map-list-item > div,
+.mini-list-row > span {
+  min-width: 0;
 }
 
 .listing-badge {
@@ -1081,11 +1158,14 @@ img {
 .status-pill {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   min-height: 32px;
   padding: 0 12px;
   border-radius: 999px;
   font-size: 0.78rem;
   font-weight: 800;
+  line-height: 1.15;
+  text-align: center;
 }
 
 .status-success {
@@ -1424,6 +1504,7 @@ img {
   }
 
   .map-canvas {
+    padding-top: 0;
     min-height: 70vh;
   }
 
@@ -1435,11 +1516,74 @@ img {
 @media (max-width: 760px) {
   .app-nav {
     padding: 0 14px;
+    gap: 8px;
   }
 
   .nav-links,
   .session-chip {
     display: none;
+  }
+
+  .mobile-menu-button {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .mobile-nav-panel {
+    position: absolute;
+    top: calc(100% - 1px);
+    left: 10px;
+    right: 10px;
+    display: grid;
+    gap: 8px;
+    max-height: calc(100svh - var(--nav-height) - 20px);
+    padding: 12px;
+    overflow: auto;
+    border: 1px solid rgba(20, 61, 37, 0.1);
+    border-radius: 0 0 18px 18px;
+    background: rgba(251, 247, 241, 0.98);
+    box-shadow: 0 18px 42px rgba(20, 61, 37, 0.16);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-8px);
+    transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s ease;
+    visibility: hidden;
+  }
+
+  .mobile-nav-panel-open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+    visibility: visible;
+  }
+
+  .mobile-nav-link,
+  .mobile-session-chip {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 14px;
+    border-radius: 12px;
+    font-weight: 700;
+  }
+
+  .mobile-session-chip {
+    margin: 0;
+    background: var(--sand);
+    color: var(--green-900);
+    font-size: 0.92rem;
+  }
+
+  .mobile-nav-link {
+    color: var(--text-soft);
+    background: rgba(255, 255, 255, 0.68);
+  }
+
+  .mobile-nav-link-active,
+  .mobile-nav-link:hover {
+    color: var(--green-900);
+    background: var(--green-100);
   }
 
   .hero-band,
@@ -1449,7 +1593,7 @@ img {
   .dashboard-grid,
   .auth-shell,
   .landing-hero {
-    width: min(100% - 20px, 1200px);
+    width: min(1200px, calc(100% - 20px));
   }
 
   .hero-band {
@@ -1481,6 +1625,16 @@ img {
     grid-template-columns: 1fr;
   }
 
+  .landing-hero-actions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(170px, 100%), 1fr));
+  }
+
+  .landing-stat-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(140px, 100%), 1fr));
+  }
+
   .device-screen {
     min-height: 560px;
   }
@@ -1494,16 +1648,47 @@ img {
   .map-sidebar {
     padding-left: 14px;
     padding-right: 14px;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    max-height: 48svh;
+    overflow-y: auto;
   }
 
   .landing-hero-media {
-    min-height: 420px;
+    display: grid;
+    gap: 12px;
+    min-height: 0;
+    padding: 12px;
+    border-radius: 24px;
   }
 
   .landing-floating-card {
     position: static;
     width: 100%;
-    margin-top: 12px;
+    margin-top: 0;
+  }
+
+  .landing-hero-image {
+    height: auto;
+    aspect-ratio: 16 / 10;
+    object-fit: contain;
+    padding: 18px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.82);
+  }
+
+  .landing-hero-media::after {
+    display: none;
+  }
+
+  .offer-header,
+  .listing-card-top,
+  .mini-list-row {
+    align-items: flex-start;
+  }
+
+  .mini-list-row {
+    flex-wrap: wrap;
   }
 }
 
@@ -1516,6 +1701,16 @@ img {
   .app-nav {
     padding: 0 12px;
     height: var(--nav-height);
+  }
+
+  .nav-side {
+    gap: 8px;
+  }
+
+  .nav-side .button {
+    min-height: 40px;
+    padding: 0 12px;
+    font-size: 0.9rem;
   }
 
   .brand-lockup {
@@ -1577,12 +1772,12 @@ img {
   }
 
   .landing-stat-card {
-    min-width: 140px;
+    min-width: 0;
     padding: 14px 16px;
   }
 
   .landing-hero-media {
-    min-height: 360px;
+    min-height: 0;
     border-radius: 24px;
   }
 
@@ -1688,6 +1883,21 @@ img {
     min-height: 38px;
     padding: 0 12px;
     font-size: 0.9rem;
+  }
+
+  .landing-hero-actions .button,
+  .button-row .button {
+    width: 100%;
+  }
+
+  .listing-card-top,
+  .offer-header {
+    flex-direction: column;
+  }
+
+  .offer-icon {
+    width: 42px;
+    height: 42px;
   }
 
   .offer-grid {
@@ -1836,7 +2046,7 @@ img {
   }
 
   .landing-hero-media {
-    min-height: 320px;
+    min-height: 0;
   }
 
   .device-frame {
@@ -1885,6 +2095,11 @@ img {
 
   .map-sidebar {
     padding: calc(var(--nav-height) + 20px) 16px 20px;
+  }
+
+  .map-canvas {
+    padding-top: var(--nav-height);
+    min-height: 100vh;
   }
 
   .offer-grid {

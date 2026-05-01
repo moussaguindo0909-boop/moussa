@@ -1289,7 +1289,7 @@ function BeneficiaryDashboardPage() {
                 <article className="offer-card" key={item.id}>
                   <div className="offer-visual">
                     {item.imageUrl ? (
-                      <img alt={item.title} src={item.imageUrl} />
+                      <img alt={item.title} src={item.imageUrl} onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=400' }} />
                     ) : (
                       <div className="offer-fallback">{CATEGORY_ICONS[item.category] || 'S'}</div>
                     )}
@@ -1467,6 +1467,7 @@ function BeneficiaryDashboardPage() {
           </div>
         </div>
       ) : null}
+      
     </main>
   )
 }
@@ -1907,7 +1908,7 @@ function MapPage() {
                 {point.imageUrl ? (
                   <img
                     alt={point.title}
-                    src={point.imageUrl}
+                   src={point.imageUrl} onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=400' }}
                     style={{ width: '100%', maxWidth: 220, borderRadius: 12, marginBottom: 8 }}
                   />
                 ) : null}

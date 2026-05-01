@@ -1,0 +1,147 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String        @id @default(cuid())
+  email         String        @unique
+  password      String
+  name          String
+  phone         String?
+  role          Role          @default(RECEIVER)
+  createdAt     DateTime      @default(now())
+  commerce      Commerce?
+  listings      Listing[]
+  reservations  Reservation[]
+  deliveries    Delivery[]    @relation("VolunteerDeliveries")
+}
+
+enum Role {
+  DONOR
+  RECEIVER
+  VOLUNTEER
+  ADMIN
+}
+
+model Commerce {
+  id        String    @id @default(cuid())
+  name      String
+  type      String
+  address   String
+  lat       Float
+  lng       Float
+  score     Float     @default(0)
+  plan      Plan      @default(STARTER)
+  userId    String    @unique
+  user      User      @relation(fields: [userId], references: [id])
+  listings  Listing[]
+}
+
+enum Plan {
+  STARTER
+  BUSINESS
+  PREMIUM
+}
+
+model Listing {
+  id            String         @id @default(cuid())
+  title         String
+  category      Category
+  quantity      String
+  unit          String
+  imageUrl      String?
+  expiresAt     DateTime
+  type          ListingType    @default(DONATION)
+  price         Float?
+  reduction     Int?
+  pickupMode    PickupMode     @default(BOTH)
+  description   String?
+  status        Status         @default(ACTIVE)
+  lat           Float
+  lng           Float
+  createdAt     DateTime       @default(now())
+  commerceId    String
+  commerce      Commerce       @relation(fields: [commerceId], references: [id])
+  userId        String
+  user          User           @relation(fields: [userId], references: [id])
+  reservations  Reservation[]
+}
+
+enum Category {
+  BAKERY
+  COOKED_MEALS
+  FRUITS_VEGETABLES
+  DAIRY
+  PASTRY
+  GROCERY
+}
+
+enum ListingType {
+  DONATION
+  REDUCED_PRICE
+  BOTH
+}
+
+enum PickupMode {
+  ON_SITE
+  DELIVERY
+  BOTH
+}
+
+enum Status {
+  ACTIVE
+  RESERVED
+  COLLECTED
+  EXPIRED
+}
+
+model Reservation {
+  id             String      @id @default(cuid())
+  listingId      String
+  listing        Listing     @relation(fields: [listingId], references: [id])
+  userId         String
+  user           User        @relation(fields: [userId], references: [id])
+  needsDelivery  Boolean     @default(false)
+  deliveryMode   String?
+  status         ResStatus   @default(PENDING)
+  createdAt      DateTime    @default(now())
+  delivery       Delivery?
+}
+
+enum ResStatus {
+  PENDING
+  CONFIRMED
+  COLLECTED
+  CANCELLED
+}
+
+model Delivery {
+  id             String      @id @default(cuid())
+  reservationId  String      @unique
+  reservation    Reservation @relation(fields: [reservationId], references: [id])
+  volunteerId    String?
+  volunteer      User?       @relation("VolunteerDeliveries", fields: [volunteerId], references: [id])
+  status         DelStatus   @default(WAITING)
+  createdAt      DateTime    @default(now())
+}
+
+enum DelStatus {
+  WAITING
+  ACCEPTED
+  IN_PROGRESS
+  DELIVERED
+}
+
+model ImpactLog {
+  id          String   @id @default(cuid())
+  kgSaved     Float
+  meals       Int
+  co2Avoided  Float
+  commerceId  String
+  createdAt   DateTime @default(now())
+}

@@ -406,7 +406,7 @@ function LandingPage() {
 
       <section className="landing-hero">
         <div className="landing-hero-copy">
-          <div className="eyebrow-pill">Injaz Tunisie - prototype Food Rescue </div>
+          <div className="eyebrow-pill">Injaz Tunisie - Food Rescue </div>
           <motion.h1
             className="hero-title"
             initial={{ opacity: 0, y: 16 }}

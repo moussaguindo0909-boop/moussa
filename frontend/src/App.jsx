@@ -304,7 +304,7 @@ function TopNav() {
 
 function LandingPage() {
   const heroStats = [
-    { value: '12', label: 'offres actives en demo' },
+    { value: '12', label: 'offres actives ' },
     { value: '3', label: 'parcours clairs par rôle' },
     { value: '24h', label: 'lecture rapide des urgences' },
   ]
@@ -388,8 +388,8 @@ function LandingPage() {
             Food Rescue relie commerçants, bénéficiaires et bénévoles dans un parcours unique et fluide qui reste facile à comprendre déjà la première visite.
           </p>
           <div className="landing-hero-actions">
-            <Link className="button button-primary" to="/register?role=RECEIVER">Démarrer maintenant</Link>
-            <Link className="button button-secondary" to="/login">Voir le prototype</Link>
+            <Link className="button button-primary" to="/register?role=RECEIVER">Inscrivez-vous</Link>
+            <Link className="button button-secondary" to="/login">Démarrer maintenant</Link>
           </div>
           <div className="landing-stat-row">
             {heroStats.map((item) => (
@@ -402,7 +402,11 @@ function LandingPage() {
         </div>
 
         <div className="landing-hero-media">
-          <img alt="Aperçu Food Rescue" className="landing-hero-image" src={heroImage} />
+         <img 
+  alt="Aperçu Food Rescue" 
+  className="landing-hero-image" 
+  src="public/logo.png" 
+/>
           <div className="landing-floating-card landing-floating-card-top">
             <span className="page-eyebrow">Carte active</span>
             <strong>Collecte, réservation et impact visibles sans bruit inutile</strong>
@@ -684,7 +688,7 @@ function LoginPage() {
       <section className="auth-shell auth-shell-narrow">
         <PageHeader
           eyebrow="Connexion"
-          title="Entrer dans le prototype"
+          title="Bienvenue sur Food Rescue"
           description="Les champs sont déjà pré-remplis avec un compte de test pour aller plus vite."
         />
 
@@ -1667,7 +1671,7 @@ function VolunteerDashboardPage() {
               <h2>Mes missions actives</h2>
             </div>
 
-            {activeMissions.length === 0 ? <p className="empty-state">Vous n avez pas encore pris de mission.</p> : null}
+            {activeMissions.length === 0 ? <p className="empty-state">Vous n'avez pas encore pris de mission.</p> : null}
 
             <div className="card-list">
               {activeMissions.map((delivery) => (

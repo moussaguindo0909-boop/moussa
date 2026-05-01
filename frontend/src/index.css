@@ -1506,3 +1506,447 @@ img {
     margin-top: 12px;
   }
 }
+
+/* Responsive mobile improvements */
+@media (max-width: 480px) {
+  :root {
+    --nav-height: 72px;
+  }
+
+  .app-nav {
+    padding: 0 12px;
+    height: var(--nav-height);
+  }
+
+  .brand-lockup {
+    gap: 8px;
+  }
+
+  .brand-logo {
+    width: 40px;
+    height: 40px;
+  }
+
+  .brand-lockup strong {
+    font-size: 1.1rem;
+  }
+
+  .hero-band,
+  .stats-band,
+  .content-band,
+  .dashboard-hero,
+  .dashboard-grid,
+  .auth-shell,
+  .landing-hero {
+    width: calc(100% - 16px);
+  }
+
+  .hero-band,
+  .landing-hero {
+    gap: 20px;
+    padding: 16px 0 32px;
+  }
+
+  .hero-title {
+    font-size: clamp(2.2rem, 8vw, 3.2rem);
+  }
+
+  .hero-text {
+    font-size: 1rem;
+    margin: 16px 0 0;
+  }
+
+  .hero-actions,
+  .hero-inline-stats {
+    margin-top: 20px;
+    gap: 8px;
+  }
+
+  .hero-inline-stats div {
+    min-width: 120px;
+    padding: 12px 16px;
+  }
+
+  .hero-sidecard {
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .landing-hero-copy {
+    gap: 16px;
+  }
+
+  .landing-stat-card {
+    min-width: 140px;
+    padding: 14px 16px;
+  }
+
+  .landing-hero-media {
+    min-height: 360px;
+    border-radius: 24px;
+  }
+
+  .landing-floating-card {
+    padding: 14px 16px;
+  }
+
+  .stats-band,
+  .summary-grid {
+    gap: 12px;
+  }
+
+  .summary-card {
+    padding: 18px;
+  }
+
+  .summary-value {
+    font-size: clamp(1.5rem, 5vw, 2rem);
+  }
+
+  .content-band {
+    padding: 32px 0 0;
+  }
+
+  .band-heading {
+    margin-bottom: 20px;
+  }
+
+  .band-heading h2,
+  .page-title {
+    font-size: clamp(1.8rem, 6vw, 2.8rem);
+  }
+
+  .steps-grid,
+  .role-grid {
+    gap: 12px;
+  }
+
+  .step-card,
+  .role-card,
+  .audience-panel,
+  .surface,
+  .auth-card {
+    padding: 20px;
+  }
+
+  .role-grid-compact {
+    grid-template-columns: 1fr;
+  }
+
+  .landing-highlights-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .landing-highlight-card {
+    padding: 20px;
+  }
+
+  .page-header {
+    gap: 16px;
+  }
+
+  .page-description {
+    margin-top: 8px;
+    font-size: 0.95rem;
+  }
+
+  .dashboard-hero {
+    padding: 20px 0 18px;
+  }
+
+  .dashboard-hero-dark,
+  .beneficiary-hero,
+  .volunteer-hero {
+    padding: 20px;
+    margin-top: 16px;
+    border-radius: 20px;
+  }
+
+  .dashboard-grid,
+  .dashboard-grid-wide {
+    gap: 16px;
+    padding-top: 16px;
+  }
+
+  .form-grid {
+    gap: 12px;
+  }
+
+  .field {
+    min-height: 44px;
+    padding: 0 12px;
+  }
+
+  .button {
+    min-height: 44px;
+    padding: 0 16px;
+    font-size: 0.95rem;
+  }
+
+  .button-small {
+    min-height: 38px;
+    padding: 0 12px;
+    font-size: 0.9rem;
+  }
+
+  .offer-grid {
+    gap: 12px;
+  }
+
+  .offer-card {
+    border-radius: 16px;
+  }
+
+  .offer-visual {
+    height: 180px;
+  }
+
+  .offer-body {
+    padding: 16px;
+    gap: 10px;
+  }
+
+  .offer-header h3 {
+    font-size: 1.1rem;
+  }
+
+  .listing-card,
+  .reservation-card {
+    padding: 16px;
+    gap: 10px;
+  }
+
+  .listing-card h3,
+  .reservation-card h3 {
+    font-size: 1.1rem;
+  }
+
+  .modal-backdrop {
+    padding: 16px;
+  }
+
+  .modal-card {
+    padding: 20px;
+  }
+
+  .modal-title {
+    font-size: 1.25rem;
+  }
+
+  .auth-shell {
+    padding-top: 20px;
+  }
+
+  .auth-card {
+    gap: 16px;
+  }
+
+  .demo-credentials {
+    padding: 14px;
+  }
+
+  .map-page-shell {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+  }
+
+  .map-sidebar {
+    padding: calc(var(--nav-height) + 16px) 12px 16px;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    min-height: auto;
+    max-height: 40vh;
+    overflow-y: auto;
+  }
+
+  .map-canvas {
+    min-height: 60vh;
+  }
+
+  .device-preview {
+    display: block;
+  }
+
+  .device-frame {
+    width: 280px;
+    margin: 0 auto;
+  }
+
+  .device-screen {
+    min-height: 480px;
+    padding: 24px 12px 16px;
+  }
+
+  .device-header {
+    padding: 16px;
+  }
+
+  .device-header strong {
+    font-size: 1.1rem;
+  }
+
+  .device-list {
+    gap: 10px;
+  }
+
+  .device-offer {
+    padding: 12px;
+    gap: 10px;
+  }
+
+  .chip-row {
+    margin-top: 12px;
+    gap: 8px;
+  }
+
+  .chip {
+    min-height: 36px;
+    padding: 0 12px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Very small screens */
+@media (max-width: 360px) {
+  .app-nav {
+    padding: 0 10px;
+  }
+
+  .brand-lockup strong {
+    font-size: 1rem;
+  }
+
+  .hero-band,
+  .stats-band,
+  .content-band,
+  .dashboard-hero,
+  .dashboard-grid,
+  .auth-shell,
+  .landing-hero {
+    width: calc(100% - 12px);
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 9vw, 2.8rem);
+  }
+
+  .hero-text {
+    font-size: 0.95rem;
+  }
+
+  .landing-hero-media {
+    min-height: 320px;
+  }
+
+  .device-frame {
+    width: 240px;
+  }
+
+  .device-screen {
+    min-height: 420px;
+  }
+
+  .modal-backdrop {
+    padding: 12px;
+  }
+
+  .modal-card {
+    padding: 18px;
+  }
+
+  .map-sidebar {
+    padding: calc(var(--nav-height) + 12px) 10px 12px;
+  }
+}
+
+/* Tablet styles */
+@media (min-width: 761px) and (max-width: 1024px) {
+  .hero-band,
+  .landing-hero {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .hero-sidecard {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .dashboard-grid,
+  .dashboard-grid-wide {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .map-page-shell {
+    grid-template-columns: 320px 1fr;
+  }
+
+  .map-sidebar {
+    padding: calc(var(--nav-height) + 20px) 16px 20px;
+  }
+
+  .offer-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .steps-grid,
+  .stats-band,
+  .summary-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .landing-highlights-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Touch-friendly improvements */
+@media (hover: none) and (pointer: coarse) {
+  .button {
+    min-height: 48px;
+    padding: 0 20px;
+  }
+
+  .button-small {
+    min-height: 44px;
+    padding: 0 16px;
+  }
+
+  .field {
+    min-height: 48px;
+    padding: 0 16px;
+  }
+
+  .chip {
+    min-height: 44px;
+    padding: 0 16px;
+  }
+
+  .role-card,
+  .offer-card,
+  .listing-card,
+  .reservation-card {
+    cursor: pointer;
+  }
+
+  .role-card:hover,
+  .offer-card:hover,
+  .listing-card:hover,
+  .reservation-card:hover {
+    transform: none;
+  }
+}
+
+/* High DPI screens */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .brand-logo,
+  .offer-icon,
+  .offer-fallback,
+  .map-list-badge,
+  .device-avatar {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
